@@ -19,6 +19,9 @@ namespace DN_EX1
         public LoginForm()
         {
             InitializeComponent();
+            Application.EnableVisualStyles();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
         }
 
         private void loginButton_Click(object sender, EventArgs e)

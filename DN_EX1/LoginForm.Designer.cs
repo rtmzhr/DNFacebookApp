@@ -29,52 +29,44 @@ namespace DN_EX1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.loginButton = new System.Windows.Forms.Button();
             this.rememberMeCheckBox = new System.Windows.Forms.CheckBox();
-            this.welcomePictureBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.welcomePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(342, 320);
+            this.loginButton.Image = ((System.Drawing.Image)(resources.GetObject("loginButton.Image")));
+            this.loginButton.Location = new System.Drawing.Point(198, 11);
+            this.loginButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(146, 40);
+            this.loginButton.Size = new System.Drawing.Size(125, 32);
             this.loginButton.TabIndex = 0;
-            this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // rememberMeCheckBox
             // 
             this.rememberMeCheckBox.AutoSize = true;
-            this.rememberMeCheckBox.Location = new System.Drawing.Point(348, 376);
+            this.rememberMeCheckBox.Location = new System.Drawing.Point(232, 244);
+            this.rememberMeCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rememberMeCheckBox.Name = "rememberMeCheckBox";
-            this.rememberMeCheckBox.Size = new System.Drawing.Size(140, 24);
+            this.rememberMeCheckBox.Size = new System.Drawing.Size(95, 17);
             this.rememberMeCheckBox.TabIndex = 1;
             this.rememberMeCheckBox.Text = "Remember Me";
             this.rememberMeCheckBox.UseVisualStyleBackColor = true;
             // 
-            // welcomePictureBox
-            // 
-            this.welcomePictureBox.Location = new System.Drawing.Point(324, 132);
-            this.welcomePictureBox.Name = "welcomePictureBox";
-            this.welcomePictureBox.Size = new System.Drawing.Size(184, 145);
-            this.welcomePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.welcomePictureBox.TabIndex = 2;
-            this.welcomePictureBox.TabStop = false;
-            // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.welcomePictureBox);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(334, 263);
             this.Controls.Add(this.rememberMeCheckBox);
             this.Controls.Add(this.loginButton);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "LoginForm";
             this.Text = "Form2";
-            ((System.ComponentModel.ISupportInitialize)(this.welcomePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,6 +76,5 @@ namespace DN_EX1
 
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.CheckBox rememberMeCheckBox;
-        private System.Windows.Forms.PictureBox welcomePictureBox;
     }
 }

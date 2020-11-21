@@ -14,49 +14,46 @@ namespace DN_EX1
 {
     public partial class MainForm : Form
     {
-        private User m_LoggedInUSer;
-        private Form m_LoginForm;
+        private User m_LoggedInUser;
+        private LoginForm m_LoginForm;
+        private FindEventsForm m_EventsForm;
+        private UserInfoForm m_UserInfoForm;
+        private FriendsForm m_FriendsForm;
 
-        public MainForm(Form i_LoginForm, User i_LoggedInUser)
+        public MainForm(LoginForm i_LoginForm, User i_LoggedInUser)
         {
-            m_LoggedInUSer = i_LoggedInUser;
+            m_LoggedInUser = i_LoggedInUser;
             m_LoginForm = i_LoginForm;
+            
+            
+            Application.EnableVisualStyles();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
             InitializeComponent();
             fetchInfo();
         }
 
         private void fetchInfo()
         {
-            fetchBasicInfo();
-            this.profilePictureBox.Load(m_LoggedInUSer.PictureLargeURL);
-            this.welcomeLabel.Text = "Welcome " + m_LoggedInUSer.FirstName
-                + " " + m_LoggedInUSer.LastName + "!";
+            this.profilePictureBox.Load(m_LoggedInUser.PictureLargeURL);
+            this.welcomeLabel.Text = "Welcome " + m_LoggedInUser.FirstName
+                + " " + m_LoggedInUser.LastName + "!";
 
-            fetchFriendsList();
-            fetchPosts();
-
-
-            // CHECK
-            fetchAlbums();
+            
+            // fetchFriendsList();
+            // fetchPosts();
+            // // CHECK
+            // fetchAlbums();
 
         }
 
-        private void fetchBasicInfo()
-        {
-            this.aboutListBox.Items.Add("Email : " + m_LoggedInUSer.Email);
-            this.aboutListBox.Items.Add("Gender : " + m_LoggedInUSer.Gender);
-            this.aboutListBox.Items.Add("Birthday : " + m_LoggedInUSer.Birthday);
-            this.aboutListBox.Items.Add("HomeTown : " + m_LoggedInUSer.Hometown);
-            this.aboutListBox.Items.Add("Location : " + m_LoggedInUSer.Location);
-            this.aboutListBox.Items.Add("Religion : " + m_LoggedInUSer.Religion);
-            this.aboutListBox.Items.Add("Relationship Status : " + m_LoggedInUSer.RelationshipStatus);
-        }
+        
 
         // CHECK
         private void fetchAlbums()
         {
             int count = 0;
-            foreach (Album album in m_LoggedInUSer.Albums)
+            foreach (Album album in m_LoggedInUser.Albums)
             {
                 if (count > 8)
                 {
@@ -66,19 +63,13 @@ namespace DN_EX1
             }
         }
 
-        private void fetchFriendsList()
-        {
-            foreach (User friend in m_LoggedInUSer.Friends)
-            {
-                this.friendsListBox.Items.Add(friend.Name);
-            }
-        }
+        
 
         private void postButton_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(this.newPostTextBox.Text))
             {
-                m_LoggedInUSer.PostStatus(this.newPostTextBox.Text);
+                m_LoggedInUser.PostStatus(this.newPostTextBox.Text);
                 fetchPosts();
             }
             else
@@ -89,7 +80,7 @@ namespace DN_EX1
 
         private void fetchPosts()
         {
-            foreach (Post post in m_LoggedInUSer.Posts)
+            foreach (Post post in m_LoggedInUser.Posts)
             {
                 if(!string.IsNullOrEmpty(post.Caption) || !string.IsNullOrEmpty(post.Description) ||
                     !string.IsNullOrEmpty(post.Message))
@@ -114,12 +105,36 @@ namespace DN_EX1
 
         private void logout_Click(object sender, EventArgs e)
         {
-            if(m_LoggedInUSer != null)
+            if(m_LoggedInUser != null)
             {
                 FacebookService.Logout();
                 m_LoginForm.Show();
                 this.Dispose();
             }
+        }
+
+        private void findEventButton_Click(object sender, EventArgs e)
+        {
+            m_EventsForm = new FindEventsForm(m_LoggedInUser, this);
+            m_EventsForm.Show();
+        }
+
+        private void profilePictureBox_Click(object sender, EventArgs e)
+        {
+           
+            m_UserInfoForm = new UserInfoForm(m_LoggedInUser);
+            m_UserInfoForm.Show();
+        }
+
+        private void m_UserInfoButton_Click(object sender, EventArgs e)
+        {
+             profilePictureBox_Click(sender, e);
+        }
+
+        private void FriendsButton_Click(object sender, EventArgs e)
+        {
+            m_FriendsForm = new FriendsForm(m_LoggedInUser);
+            m_FriendsForm.Show();
         }
     }
 }
