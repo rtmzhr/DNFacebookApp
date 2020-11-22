@@ -21,6 +21,7 @@ namespace DN_EX1
                 components.Dispose();
             }
             base.Dispose(disposing);
+            //
         }
 
         protected override void OnLocationChanged(EventArgs e)
