@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlbumsForm.Designer.cs">
+      <DependentUpon>AlbumsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Collage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     <Compile Include="UserInfoForm.Designer.cs">
       <DependentUpon>UserInfoForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AlbumsForm.resx">
+      <DependentUpon>AlbumsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FindEventsForm.resx">
       <DependentUpon>FindEventsForm.cs</DependentUpon>
     </EmbeddedResource>

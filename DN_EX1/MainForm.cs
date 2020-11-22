@@ -19,6 +19,7 @@ namespace DN_EX1
         private FindEventsForm m_EventsForm;
         private UserInfoForm m_UserInfoForm;
         private FriendsForm m_FriendsForm;
+        private AlbumsForm m_AlbumsForm;
 
         public MainForm(LoginForm i_LoginForm, User i_LoggedInUser)
         {
@@ -39,6 +40,26 @@ namespace DN_EX1
             this.welcomeLabel.Text = "Welcome " + m_LoggedInUser.FirstName
                 + " " + m_LoggedInUser.LastName + "!";
 
+            bool hasCoverPhoto = false;
+            Album coverPhotosAlbum = null;
+            foreach(Album album in m_LoggedInUser.Albums)
+            {
+                if (album.Name == "Cover Photos")
+                {
+                    if(album.Count > 0)
+                    {
+                        hasCoverPhoto = true;
+                        coverPhotosAlbum = album;                        
+                    }
+
+                    break;
+                }
+            }
+
+            if(hasCoverPhoto)
+            {
+                m_CoverPhotoPictureBox.Load(coverPhotosAlbum.Photos[0].PictureNormalURL);
+            }
             
             // fetchFriendsList();
             // fetchPosts();
@@ -136,5 +157,18 @@ namespace DN_EX1
             m_FriendsForm = new FriendsForm(m_LoggedInUser);
             m_FriendsForm.Show();
         }
+
+        private void m_AlbumsButton_Click(object sender, EventArgs e)
+        {
+            m_AlbumsForm = new AlbumsForm(m_LoggedInUser);
+            m_AlbumsForm.Show();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            Environment.Exit(0);
+        }
+
     }
 }
