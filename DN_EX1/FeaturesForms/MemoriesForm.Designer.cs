@@ -117,7 +117,7 @@
             // 
             // m_PhotoPictureBox
             // 
-            this.m_PhotoPictureBox.Location = new System.Drawing.Point(787, 212);
+            this.m_PhotoPictureBox.Location = new System.Drawing.Point(948, 212);
             this.m_PhotoPictureBox.Name = "m_PhotoPictureBox";
             this.m_PhotoPictureBox.Size = new System.Drawing.Size(420, 326);
             this.m_PhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -126,7 +126,7 @@
             // 
             // m_LeftPhoto
             // 
-            this.m_LeftPhoto.Location = new System.Drawing.Point(675, 344);
+            this.m_LeftPhoto.Location = new System.Drawing.Point(836, 344);
             this.m_LeftPhoto.Name = "m_LeftPhoto";
             this.m_LeftPhoto.Size = new System.Drawing.Size(115, 82);
             this.m_LeftPhoto.TabIndex = 7;
@@ -136,7 +136,7 @@
             // 
             // m_RightPhoto
             // 
-            this.m_RightPhoto.Location = new System.Drawing.Point(1201, 344);
+            this.m_RightPhoto.Location = new System.Drawing.Point(1362, 344);
             this.m_RightPhoto.Name = "m_RightPhoto";
             this.m_RightPhoto.Size = new System.Drawing.Size(115, 82);
             this.m_RightPhoto.TabIndex = 8;
@@ -156,7 +156,7 @@
             // m_NumberOfPhotosLabal
             // 
             this.m_NumberOfPhotosLabal.AutoSize = true;
-            this.m_NumberOfPhotosLabal.Location = new System.Drawing.Point(789, 544);
+            this.m_NumberOfPhotosLabal.Location = new System.Drawing.Point(950, 544);
             this.m_NumberOfPhotosLabal.Name = "m_NumberOfPhotosLabal";
             this.m_NumberOfPhotosLabal.Size = new System.Drawing.Size(70, 25);
             this.m_NumberOfPhotosLabal.TabIndex = 10;
@@ -184,7 +184,7 @@
             // m_PictureLabel
             // 
             this.m_PictureLabel.AutoSize = true;
-            this.m_PictureLabel.Location = new System.Drawing.Point(792, 179);
+            this.m_PictureLabel.Location = new System.Drawing.Point(953, 179);
             this.m_PictureLabel.Name = "m_PictureLabel";
             this.m_PictureLabel.Size = new System.Drawing.Size(70, 25);
             this.m_PictureLabel.TabIndex = 13;

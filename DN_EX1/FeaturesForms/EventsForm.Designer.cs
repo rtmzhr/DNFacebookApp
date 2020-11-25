@@ -34,7 +34,7 @@
             this.fromLabel = new System.Windows.Forms.Label();
             this.untilLabel = new System.Windows.Forms.Label();
             this.findButton = new System.Windows.Forms.Button();
-            this.eventsListBox = new System.Windows.Forms.ListBox();
+            this.m_EventsListBox = new System.Windows.Forms.ListBox();
             this.m_UpToLabel = new System.Windows.Forms.Label();
             this.m_PeopleLimitTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -112,13 +112,13 @@
             // 
             // eventsListBox
             // 
-            this.eventsListBox.FormattingEnabled = true;
-            this.eventsListBox.ItemHeight = 25;
-            this.eventsListBox.Location = new System.Drawing.Point(862, 113);
-            this.eventsListBox.Margin = new System.Windows.Forms.Padding(6);
-            this.eventsListBox.Name = "eventsListBox";
-            this.eventsListBox.Size = new System.Drawing.Size(622, 429);
-            this.eventsListBox.TabIndex = 6;
+            this.m_EventsListBox.FormattingEnabled = true;
+            this.m_EventsListBox.ItemHeight = 25;
+            this.m_EventsListBox.Location = new System.Drawing.Point(862, 113);
+            this.m_EventsListBox.Margin = new System.Windows.Forms.Padding(6);
+            this.m_EventsListBox.Name = "eventsListBox";
+            this.m_EventsListBox.Size = new System.Drawing.Size(622, 429);
+            this.m_EventsListBox.TabIndex = 6;
             // 
             // m_UpToLabel
             // 
@@ -160,7 +160,7 @@
             this.m_FetchMyEventsButton.TabIndex = 16;
             this.m_FetchMyEventsButton.Text = "Fetch My Events";
             this.m_FetchMyEventsButton.UseVisualStyleBackColor = true;
-            this.m_FetchMyEventsButton.Click += new System.EventHandler(this.fetchMyEvents_Click);
+            this.m_FetchMyEventsButton.Click += new System.EventHandler(this.fetchLoggedInEvents_Click);
             // 
             // m_FetchFriendsEventsButton
             // 
@@ -242,7 +242,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.m_PeopleLimitTextBox);
             this.Controls.Add(this.m_UpToLabel);
-            this.Controls.Add(this.eventsListBox);
+            this.Controls.Add(this.m_EventsListBox);
             this.Controls.Add(this.findButton);
             this.Controls.Add(this.untilLabel);
             this.Controls.Add(this.fromLabel);
@@ -250,8 +250,8 @@
             this.Controls.Add(this.m_FromDateTime);
             this.Controls.Add(this.explnationLabel);
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "FindEventsForm";
-            this.Text = "Form1";
+            this.Name = "Events";
+            this.Text = "Events";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,7 +265,7 @@
         private System.Windows.Forms.Label fromLabel;
         private System.Windows.Forms.Label untilLabel;
         private System.Windows.Forms.Button findButton;
-        private System.Windows.Forms.ListBox eventsListBox;
+        private System.Windows.Forms.ListBox m_EventsListBox;
         private System.Windows.Forms.Label m_UpToLabel;
         private System.Windows.Forms.TextBox m_PeopleLimitTextBox;
         private System.Windows.Forms.Label label1;

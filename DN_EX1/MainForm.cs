@@ -71,24 +71,35 @@ namespace DN_EX1
 
         private void postButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.m_NewPostTextBox.Text))
+            try
             {
-                m_LoggedInUser.PostStatus(this.m_NewPostTextBox.Text);
-                fetchPosts();
+                if (!string.IsNullOrEmpty(this.m_NewPostTextBox.Text))
+                {
+                    m_LoggedInUser.PostStatus(this.m_NewPostTextBox.Text);
+                    fetchPosts();
+                }
+                else
+                {
+                    MessageBox.Show("Please Write Something ;)");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Please Write Something ;)");
+                MessageBox.Show("Couldn't Post");
             }
+            
         }
 
         private void fetchPosts()
         {
-            foreach (Post post in m_LoggedInUser.Posts)
+            if (m_LoggedInUser.Posts.Count > 0)
             {
-                if(!string.IsNullOrEmpty(post.Description))
+                foreach (Post post in m_LoggedInUser.Posts)
                 {
-                    this.m_PostsListBox.Items.Add(post.Description);
+                    if (!string.IsNullOrEmpty(post.Description))
+                    {
+                        this.m_PostsListBox.Items.Add(post.Description);
+                    }
                 }
             }
         }

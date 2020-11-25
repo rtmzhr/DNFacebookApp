@@ -35,7 +35,6 @@ namespace DN_EX1
             this.m_WelcomeLabel = new System.Windows.Forms.Label();
             this.m_AlbumsButton = new System.Windows.Forms.Button();
             this.m_MemoriesButton = new System.Windows.Forms.Button();
-            this.m_GroupsButton = new System.Windows.Forms.Button();
             this.m_FriendsButton = new System.Windows.Forms.Button();
             this.m_UserInfoButton = new System.Windows.Forms.Button();
             this.m_EventButton = new System.Windows.Forms.Button();
@@ -82,7 +81,7 @@ namespace DN_EX1
             // 
             // m_AlbumsButton
             // 
-            this.m_AlbumsButton.Location = new System.Drawing.Point(2, 785);
+            this.m_AlbumsButton.Location = new System.Drawing.Point(2, 730);
             this.m_AlbumsButton.Margin = new System.Windows.Forms.Padding(6);
             this.m_AlbumsButton.Name = "m_AlbumsButton";
             this.m_AlbumsButton.Size = new System.Drawing.Size(234, 48);
@@ -94,24 +93,13 @@ namespace DN_EX1
             // m_MemoriesButton
             // 
             this.m_MemoriesButton.BackgroundImage = global::DN_EX1.Properties.Resources.Screen_Shot_2020_11_21_at_11_21_51_PM;
-            this.m_MemoriesButton.Location = new System.Drawing.Point(2, 688);
+            this.m_MemoriesButton.Location = new System.Drawing.Point(2, 612);
             this.m_MemoriesButton.Margin = new System.Windows.Forms.Padding(6);
             this.m_MemoriesButton.Name = "m_MemoriesButton";
             this.m_MemoriesButton.Size = new System.Drawing.Size(268, 85);
             this.m_MemoriesButton.TabIndex = 18;
             this.m_MemoriesButton.UseVisualStyleBackColor = true;
             this.m_MemoriesButton.Click += new System.EventHandler(this.memoryButton_Click);
-            // 
-            // m_GroupsButton
-            // 
-            this.m_GroupsButton.BackgroundImage = global::DN_EX1.Properties.Resources.Screen_Shot_2020_11_21_at_11_16_32_PM;
-            this.m_GroupsButton.Location = new System.Drawing.Point(2, 587);
-            this.m_GroupsButton.Margin = new System.Windows.Forms.Padding(6);
-            this.m_GroupsButton.Name = "m_GroupsButton";
-            this.m_GroupsButton.Size = new System.Drawing.Size(216, 85);
-            this.m_GroupsButton.TabIndex = 17;
-            this.m_GroupsButton.UseVisualStyleBackColor = true;
-            this.m_GroupsButton.Click += new System.EventHandler(this.groupsButton_Click);
             // 
             // m_FriendsButton
             // 
@@ -218,7 +206,6 @@ namespace DN_EX1
             this.Controls.Add(this.m_FetchPostsButton);
             this.Controls.Add(this.m_AlbumsButton);
             this.Controls.Add(this.m_MemoriesButton);
-            this.Controls.Add(this.m_GroupsButton);
             this.Controls.Add(this.m_FriendsButton);
             this.Controls.Add(this.m_UserInfoButton);
             this.Controls.Add(this.m_EventButton);
@@ -250,7 +237,6 @@ namespace DN_EX1
         private System.Windows.Forms.Button m_EventButton;
         private System.Windows.Forms.Button m_UserInfoButton;
         private System.Windows.Forms.Button m_FriendsButton;
-        private System.Windows.Forms.Button m_GroupsButton;
         private System.Windows.Forms.Button m_MemoriesButton;
         private System.Windows.Forms.Button m_AlbumsButton;
         private System.Windows.Forms.PictureBox m_CoverPhotoPictureBox;

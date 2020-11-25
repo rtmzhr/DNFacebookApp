@@ -61,8 +61,6 @@ namespace DN_EX1
             if (!m_IsFetchedFriends)
             {
                 m_IsFetchedFriends = true;
-                m_FriendsDesplayedInListBox.Add(m_LoggedInUser);
-                this.m_FriendsListBox.Items.Add(m_LoggedInUser.Name);
                 foreach (User friend in m_LoggedInUser.Friends)
                 {
                     m_FriendsDesplayedInListBox.Add(friend);

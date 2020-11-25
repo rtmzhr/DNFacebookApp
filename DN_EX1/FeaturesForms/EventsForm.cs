@@ -17,6 +17,11 @@ namespace DN_EX1
 
         private User m_LoggedInUser;
         private MainForm m_MainForm;
+        private bool m_IsLoggedInEvents = true;
+        private bool m_LoggedInUserEventsWasFetched = false;
+        private bool m_LoggedInFriendEventsWasFetched = false;
+        private List<string> m_LoggedInEvents = new List<string>();
+        private List<string> m_LoggedInFriendsEvents = new List<string>();
 
         public EventsForm(User i_LoggedInUSer, MainForm i_MainForm)
         {
@@ -35,7 +40,7 @@ namespace DN_EX1
             int limit = int.MaxValue;
             Int32.TryParse(m_PeopleLimitTextBox.Text, out limit);
 
-            foreach (string eventName in eventsListBox.Items)
+            foreach (string eventName in m_EventsListBox.Items)
             {
                 Event curEvent = getEvent(m_LoggedInUser.Events, eventName);
                 if (DateTime.Compare(m_FromDateTime.Value, DateTime.Now) != 0 ||
@@ -62,7 +67,7 @@ namespace DN_EX1
 
             foreach(string eventName in eventsToRemove)
             {
-                eventsListBox.Items.Remove(eventName);
+                m_EventsListBox.Items.Remove(eventName);
             }
         }
 
@@ -101,29 +106,55 @@ namespace DN_EX1
             return targetEvent;
         }
 
-        private void fetchMyEvents_Click(object sender, EventArgs e)
-        {
-            foreach( Event ev in m_LoggedInUser.Events)
-            {
-                eventsListBox.Items.Add(ev.Name);
-            }
-        }
+        
 
         private void showFrienInfo_Click(object sender, EventArgs e)
         {
-            EventInfoForm info = new EventInfoForm(getEvent(m_LoggedInUser.Events, (string)eventsListBox.SelectedItem));
+            EventInfoForm info = new EventInfoForm(getEvent(m_LoggedInUser.Events, (string)m_EventsListBox.SelectedItem));
             info.Show();
+        }
+        private void fetchLoggedInEvents_Click(object sender, EventArgs e)
+        {
+            adjustEventsListBox(true);
+            if (m_LoggedInUser.Events.Count > 0)
+            {
+                addEventsToListBox(m_LoggedInUser.Events, m_LoggedInEvents, m_LoggedInUserEventsWasFetched);
+            }
+        }
+
+        private void addEventsToListBox(FacebookObjectCollection<Event> i_EventsToAdd, List<string> m_EventsFetched, bool m_WasFetched)
+        {
+            foreach (Event ev in i_EventsToAdd)
+            {
+                m_EventsListBox.Items.Add(ev.Name);
+                if (!m_WasFetched)
+                {
+                    m_EventsFetched.Add(ev.Name);
+                }
+            }
+            m_WasFetched = true;
         }
 
         private void fetchFriendsEvents_Click(object sender, EventArgs e)
         {
-            foreach(User friend in m_LoggedInUser.Friends)
+            adjustEventsListBox(false);
+            if (m_EventsListBox.Items.Count > 0)
             {
-                foreach (Event ev in friend.Events)
+                foreach (User friend in m_LoggedInUser.Friends)
                 {
-                    eventsListBox.Items.Add(ev.Name);
+                    addEventsToListBox(friend.Events, m_LoggedInFriendsEvents, m_LoggedInFriendEventsWasFetched);
                 }
             }
+        }
+
+        private void adjustEventsListBox(bool i_isLoggedInUser)
+        {
+            int len = m_EventsListBox.Items.Count;
+            for (int i = 0; i < len; i++)
+            {
+                m_EventsListBox.Items.RemoveAt(0);
+            }
+            m_IsLoggedInEvents = i_isLoggedInUser;
         }
     }
     }
