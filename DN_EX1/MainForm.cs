@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DN_EX1.InfoForms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
@@ -15,18 +16,21 @@ namespace DN_EX1
     public partial class MainForm : Form
     {
         private User m_LoggedInUser;
+
         private LoginForm m_LoginForm;
-        private FindEventsForm m_EventsForm;
+        private EventsForm m_EventsForm;
         private UserInfoForm m_UserInfoForm;
+        private PostInfoForm m_PostInfoForm;
         private FriendsForm m_FriendsForm;
         private AlbumsForm m_AlbumsForm;
+        private GroupsForm m_GroupsForm;
+        private MemoriesForm m_MemoriesForm;
+        
 
         public MainForm(LoginForm i_LoginForm, User i_LoggedInUser)
         {
             m_LoggedInUser = i_LoggedInUser;
             m_LoginForm = i_LoginForm;
-            
-            
             Application.EnableVisualStyles();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -36,8 +40,8 @@ namespace DN_EX1
 
         private void fetchInfo()
         {
-            this.profilePictureBox.Load(m_LoggedInUser.PictureLargeURL);
-            this.welcomeLabel.Text = "Welcome " + m_LoggedInUser.FirstName
+            this.m_ProfilePictureBox.Load(m_LoggedInUser.PictureLargeURL);
+            this.m_WelcomeLabel.Text = "Welcome " + m_LoggedInUser.FirstName
                 + " " + m_LoggedInUser.LastName + "!";
 
             bool hasCoverPhoto = false;
@@ -60,37 +64,16 @@ namespace DN_EX1
             {
                 m_CoverPhotoPictureBox.Load(coverPhotosAlbum.Photos[0].PictureNormalURL);
             }
-            
-            // fetchFriendsList();
-            // fetchPosts();
-            // // CHECK
-            // fetchAlbums();
-
+ 
         }
 
-        
-
-        // CHECK
-        private void fetchAlbums()
-        {
-            int count = 0;
-            foreach (Album album in m_LoggedInUser.Albums)
-            {
-                if (count > 8)
-                {
-                    break;
-                }
-                //this.m_Collage.Add(album.Pictures.);
-            }
-        }
-
-        
+              
 
         private void postButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.newPostTextBox.Text))
+            if (!string.IsNullOrEmpty(this.m_NewPostTextBox.Text))
             {
-                m_LoggedInUser.PostStatus(this.newPostTextBox.Text);
+                m_LoggedInUser.PostStatus(this.m_NewPostTextBox.Text);
                 fetchPosts();
             }
             else
@@ -103,23 +86,9 @@ namespace DN_EX1
         {
             foreach (Post post in m_LoggedInUser.Posts)
             {
-                if(!string.IsNullOrEmpty(post.Caption) || !string.IsNullOrEmpty(post.Description) ||
-                    !string.IsNullOrEmpty(post.Message))
+                if(!string.IsNullOrEmpty(post.Description))
                 {
-                    if (!string.IsNullOrEmpty(post.Caption))
-                    {
-                        this.postsListBox.Items.Add(post.Caption);
-                    }
-                    if (!string.IsNullOrEmpty(post.Description))
-                    {
-                        this.postsListBox.Items.Add(post.Description);
-                    }
-                    if(!string.IsNullOrEmpty(post.Message))
-                    {
-                        this.postsListBox.Items.Add( post.Message);
-                    }
-
-                    this.postsListBox.Items.Add("");
+                    this.m_PostsListBox.Items.Add(post.Description);
                 }
             }
         }
@@ -129,6 +98,8 @@ namespace DN_EX1
             if(m_LoggedInUser != null)
             {
                 FacebookService.Logout();
+                m_LoginForm.AppSettings.RememberMe = false;
+                m_LoginForm.AppSettings.SaveToFile();
                 m_LoginForm.Show();
                 this.Dispose();
             }
@@ -136,7 +107,7 @@ namespace DN_EX1
 
         private void findEventButton_Click(object sender, EventArgs e)
         {
-            m_EventsForm = new FindEventsForm(m_LoggedInUser, this);
+            m_EventsForm = new EventsForm(m_LoggedInUser, this);
             m_EventsForm.Show();
         }
 
@@ -147,18 +118,18 @@ namespace DN_EX1
             m_UserInfoForm.Show();
         }
 
-        private void m_UserInfoButton_Click(object sender, EventArgs e)
+        private void userInfoButton_Click(object sender, EventArgs e)
         {
              profilePictureBox_Click(sender, e);
         }
 
-        private void FriendsButton_Click(object sender, EventArgs e)
+        private void friendsButton_Click(object sender, EventArgs e)
         {
             m_FriendsForm = new FriendsForm(m_LoggedInUser);
             m_FriendsForm.Show();
         }
 
-        private void m_AlbumsButton_Click(object sender, EventArgs e)
+        private void albumsButton_Click(object sender, EventArgs e)
         {
             m_AlbumsForm = new AlbumsForm(m_LoggedInUser);
             m_AlbumsForm.Show();
@@ -170,5 +141,56 @@ namespace DN_EX1
             Environment.Exit(0);
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            m_LoginForm.AppSettings.SaveToFile();
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            m_LoginForm.Hide();
+            m_LoginForm.LoadingForm.Hide();
+        }
+
+        private void memoryButton_Click(object sender, EventArgs e)
+        {
+            m_MemoriesForm = new MemoriesForm(m_LoggedInUser);
+            m_MemoriesForm.Show();
+
+        }
+
+        private void groupsButton_Click(object sender, EventArgs e)
+        {
+            m_GroupsForm = new GroupsForm(m_LoggedInUser);
+            m_GroupsForm.Show();
+        }
+
+        private void fetchPostsButton_Click(object sender, EventArgs e)
+        {
+            fetchPosts();
+        }
+
+        private void showPostButton_Click(object sender, EventArgs e)
+        {
+            m_PostInfoForm = new PostInfoForm(getPost(m_LoggedInUser.Posts, (string)m_PostsListBox.SelectedItem));
+            m_PostInfoForm.Show();
+        }
+
+        private Post getPost(FacebookObjectCollection<Post> posts, string i_PostDescription)
+        {
+            Post targetPost = null;
+            foreach(Post post in m_LoggedInUser.Posts)
+            {
+                if(post.Description == i_PostDescription)
+                {
+                    targetPost = post;
+                    break;
+                }
+            }
+
+            return targetPost;
+        }
     }
 }

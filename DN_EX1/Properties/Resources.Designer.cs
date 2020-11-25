@@ -63,6 +63,16 @@ namespace DN_EX1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Loading {
+            get {
+                object obj = ResourceManager.GetObject("Loading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Screen_Shot_2020_11_21_at_10_53_00_PM {
             get {
                 object obj = ResourceManager.GetObject("Screen Shot 2020-11-21 at 10.53.00 PM", resourceCulture);

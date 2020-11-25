@@ -30,21 +30,34 @@ namespace DN_EX1
             fetchAlbumsNames();
             m_AlbumsNamesListBox.SelectedIndex = 0;
             getCurrentAlbumPhotosURL();
-            displayPhoto();          
+            displayPhoto();
         }
 
         private void displayPhoto()
         {
-            m_CurrentPhotoPictureBox.Load(m_CurrentAlbumUrlPhotos[0]);
+            if (m_CurrentAlbumUrlPhotos.Count > 0)
+            {
+                m_CurrentPhotoPictureBox.Load(m_CurrentAlbumUrlPhotos[0]);
+            }
         }
 
         private void getCurrentAlbumPhotosURL()
         {
             int selectedAlbumIndex = m_AlbumsNamesListBox.SelectedIndex;
-            foreach(Photo photo in m_LoggedInUser.Albums[selectedAlbumIndex].Photos)
+            if (selectedAlbumIndex == m_LoggedInUser.Albums.Count)
             {
-                m_CurrentAlbumUrlPhotos.Add(photo.PictureNormalURL);
-            }            
+                foreach (Photo photo in m_LoggedInUser.PhotosTaggedIn)
+                {
+                    m_CurrentAlbumUrlPhotos.Add(photo.PictureNormalURL);
+                }
+            }
+            else
+            {
+                foreach (Photo photo in m_LoggedInUser.Albums[selectedAlbumIndex].Photos)
+                {
+                    m_CurrentAlbumUrlPhotos.Add(photo.PictureNormalURL);
+                }
+            }
         }
 
         private void onChangeSelectedAlbum(object sender, EventArgs e)
@@ -61,6 +74,8 @@ namespace DN_EX1
             {
                 m_AlbumsNamesListBox.Items.Add(album.Name);
             }
+
+            m_AlbumsNamesListBox.Items.Add("Photos of You");
         }
 
         private void m_NextPhoto_Click(object sender, EventArgs e)
@@ -76,7 +91,7 @@ namespace DN_EX1
 
             m_CurrentPhotoPictureBox.Load(m_CurrentAlbumUrlPhotos[m_CurrentPhotoIndex]);
         }
-
+        //
         private void m_PreviousPhoto_Click(object sender, EventArgs e)
         {
             if (m_CurrentPhotoIndex == 0)

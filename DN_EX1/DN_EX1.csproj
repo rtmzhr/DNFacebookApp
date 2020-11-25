@@ -59,26 +59,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlbumsForm.cs">
+    <Compile Include="FeaturesForms\AlbumsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlbumsForm.Designer.cs">
+    <Compile Include="FeaturesForms\AlbumsForm.Designer.cs">
       <DependentUpon>AlbumsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Collage.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FindEventsForm.cs">
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="InfoForms\EventInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FindEventsForm.Designer.cs">
-      <DependentUpon>FindEventsForm.cs</DependentUpon>
+    <Compile Include="InfoForms\EventInfoForm.Designer.cs">
+      <DependentUpon>EventInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FriendsForm.cs">
+    <Compile Include="FeaturesForms\EventsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FriendsForm.Designer.cs">
+    <Compile Include="FeaturesForms\EventsForm.Designer.cs">
+      <DependentUpon>EventsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeaturesForms\FriendsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FeaturesForms\FriendsForm.Designer.cs">
       <DependentUpon>FriendsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeaturesForms\GroupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FeaturesForms\GroupsForm.Designer.cs">
+      <DependentUpon>GroupsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoForms\PostInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoForms\PostInfoForm.Designer.cs">
+      <DependentUpon>PostInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -92,11 +114,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrivacyRadioButtons.cs">
-      <SubType>Component</SubType>
+    <Compile Include="FeaturesForms\MemoriesForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrivacyRadioButtons.Designer.cs">
-      <DependentUpon>PrivacyRadioButtons.cs</DependentUpon>
+    <Compile Include="FeaturesForms\MemoriesForm.Designer.cs">
+      <DependentUpon>MemoriesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,20 +127,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserInfoForm.cs">
+    <Compile Include="InfoForms\UserInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserInfoForm.Designer.cs">
+    <Compile Include="InfoForms\UserInfoForm.Designer.cs">
       <DependentUpon>UserInfoForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AlbumsForm.resx">
+    <EmbeddedResource Include="FeaturesForms\AlbumsForm.resx">
       <DependentUpon>AlbumsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FindEventsForm.resx">
-      <DependentUpon>FindEventsForm.cs</DependentUpon>
+    <EmbeddedResource Include="InfoForms\EventInfoForm.resx">
+      <DependentUpon>EventInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FriendsForm.resx">
+    <EmbeddedResource Include="FeaturesForms\EventsForm.resx">
+      <DependentUpon>EventsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeaturesForms\FriendsForm.resx">
       <DependentUpon>FriendsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeaturesForms\GroupsForm.resx">
+      <DependentUpon>GroupsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoForms\PostInfoForm.resx">
+      <DependentUpon>PostInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -126,15 +160,15 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrivacyRadioButtons.resx">
-      <DependentUpon>PrivacyRadioButtons.cs</DependentUpon>
+    <EmbeddedResource Include="FeaturesForms\MemoriesForm.resx">
+      <DependentUpon>MemoriesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserInfoForm.resx">
+    <EmbeddedResource Include="InfoForms\UserInfoForm.resx">
       <DependentUpon>UserInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -173,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Screen Shot 2020-11-21 at 11.21.51 PM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Loading.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
